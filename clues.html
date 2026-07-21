@@ -1,61 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzles</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Final Challenge</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+#clueList{
+    width:350px;
+    margin:auto;
+    padding:0;
+}
+
+#clueList li{
+    list-style:none;
+    background:#ececec;
+    margin:10px;
+    padding:15px;
+    cursor:move;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+#finalButton{
+    display:none;
+    margin-top:30px;
+}
+
+.success{
+    color:green;
+    font-weight:bold;
+}
+
+.error{
+    color:red;
+    font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <header>
-<h1>Puzzle Room</h1>
+
+<h1>Final Challenge</h1>
+
 </header>
 
 <main>
 
-<h2>Riddle One</h2>
+<h2>Puzzle 1 - Railroad Riddle</h2>
 
 <p>
 
 I carry people without feet.<br>
 I travel without sleep.<br>
-My path is made of steel.<br>
+My path is made of steel.<br><br>
 
 What am I?
 
 </p>
 
-<input id="answer" type="text">
+<input
+id="answer"
+type="text"
+placeholder="Type your answer">
 
-<button onclick="checkAnswer()">Submit</button>
+<button onclick="checkRiddle()">
 
-<p id="result"></p>
+Submit
+
+</button>
+
+<p id="riddleResult"></p>
 
 <hr>
 
-<h2>Final Clue</h2>
+<div id="orderSection" style="display:none;">
+
+<h2>Puzzle 2 - Arrange the Clues</h2>
 
 <p>
-Arrange these clues in order:
+
+Drag the clues into the correct order.
 
 </p>
 
-<ol>
-<li>The Journal</li>
-<li>The Map</li>
-<li>The Tunnel</li>
-<li>The Brass Key</li>
-<li>The Hidden Cave</li>
-</ol>
+<ul id="clueList">
 
-<a href="ending.html">
-<button>Finish Adventure</button>
+<li draggable="true">Brass Key</li>
+
+<li draggable="true">Tunnel</li>
+
+<li draggable="true">Journal</li>
+
+<li draggable="true">Hidden Cave</li>
+
+<li draggable="true">Map</li>
+
+</ul>
+
+<button onclick="checkOrder()">
+
+Check Order
+
+</button>
+
+<p id="orderResult"></p>
+
+</div>
+
+<a id="finalButton" href="ending.html">
+
+<button>
+
+Unlock the Lost Train
+
+</button>
+
 </a>
 
 </main>
 
-<script src="script.js"></script>
+<script>
+
+let dragItem;
+
+const list=document.getElementById("clueList");
+
+function checkRiddle(){
+
+const answer=document
+.getElementById("answer")
+.value
+.trim()
+.toLowerCase();
+
+if(answer==="train"){
+
+document.getElementById("riddleResult").innerHTML=
+"<span class='success'>Correct! You earned the Brass Key.</span>";
+
+document.getElementById("orderSection").style.display="block";
+
+}
+else{
+
+document.getElementById("riddleResult").innerHTML=
+"<span class='error'>Incorrect. Try again.</span>";
+
+}
+
+}
+
+document.querySelectorAll("#clueList li").forEach(item=>{
+
+item.addEventListener("dragstart",()=>{
+
+dragItem=item;
+
+});
+
+item.addEventListener("dragover",(e)=>{
+
+e.preventDefault();
+
+});
+
+item.addEventListener("drop",()=>{
+
+let parent=item.parentNode;
+
+parent.insertBefore(dragItem,item);
+
+});
+
+});
+
+function checkOrder(){
+
+const correct=[
+
+"Journal",
+"Map",
+"Tunnel",
+"Brass Key",
+"Hidden Cave"
+
+];
+
+const current=[
+
+...document.querySelectorAll("#clueList li")
+
+].map(li=>li.innerText);
+
+if(JSON.stringify(correct)==JSON.stringify(current)){
+
+document.getElementById("orderResult").innerHTML=
+"<span class='success'>Excellent! The cave door opens!</span>";
+
+document.getElementById("finalButton").style.display="inline";
+
+}
+else{
+
+document.getElementById("orderResult").innerHTML=
+"<span class='error'>That order is incorrect. Look at your clues carefully.</span>";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
