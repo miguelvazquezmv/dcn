@@ -5,31 +5,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Final Challenge</title>
+<title>The Final Challenge</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
 
-#clueList{
-    width:350px;
+body{
+    font-family:Arial, sans-serif;
+    background:#f2f2f2;
+    text-align:center;
+}
+
+main{
+    width:90%;
+    max-width:700px;
     margin:auto;
+}
+
+ul{
     padding:0;
 }
 
-#clueList li{
+li{
+    color: goldenrod;
     list-style:none;
-    background:#ececec;
+    background:#2c3e50;
     margin:10px;
     padding:15px;
-    cursor:move;
-    border-radius:8px;
-    font-weight:bold;
+    border-radius:10px;
+    font-size:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-#finalButton{
-    display:none;
-    margin-top:30px;
+.controls button{
+    margin-left:5px;
+    width:40px;
+    height:40px;
+    font-size:18px;
 }
 
 .success{
@@ -42,6 +57,15 @@
     font-weight:bold;
 }
 
+#orderSection{
+    display:none;
+}
+
+#finishButton{
+    display:none;
+    margin-top:30px;
+}
+
 </style>
 
 </head>
@@ -50,13 +74,13 @@
 
 <header>
 
-<h1>Final Challenge</h1>
+<h1>The Mystery of the Lost Train</h1>
 
 </header>
 
 <main>
 
-<h2>Puzzle 1 - Railroad Riddle</h2>
+<h2>Puzzle 1</h2>
 
 <p>
 
@@ -71,7 +95,7 @@ What am I?
 <input
 id="answer"
 type="text"
-placeholder="Type your answer">
+placeholder="Your answer">
 
 <button onclick="checkRiddle()">
 
@@ -83,27 +107,87 @@ Submit
 
 <hr>
 
-<div id="orderSection" style="display:none;">
+<div id="orderSection">
 
-<h2>Puzzle 2 - Arrange the Clues</h2>
+<h2>Puzzle 2</h2>
 
 <p>
 
-Drag the clues into the correct order.
+Arrange the clues in the correct order using ▲ and ▼.
 
 </p>
 
 <ul id="clueList">
 
-<li draggable="true">Brass Key</li>
+<li>
 
-<li draggable="true">Tunnel</li>
+<span>Brass Key</span>
 
-<li draggable="true">Journal</li>
+<div class="controls">
 
-<li draggable="true">Hidden Cave</li>
+<button onclick="moveUp(this)">▲</button>
 
-<li draggable="true">Map</li>
+<button onclick="moveDown(this)">▼</button>
+
+</div>
+
+</li>
+
+<li>
+
+<span>Tunnel</span>
+
+<div class="controls">
+
+<button onclick="moveUp(this)">▲</button>
+
+<button onclick="moveDown(this)">▼</button>
+
+</div>
+
+</li>
+
+<li>
+
+<span>Journal</span>
+
+<div class="controls">
+
+<button onclick="moveUp(this)">▲</button>
+
+<button onclick="moveDown(this)">▼</button>
+
+</div>
+
+</li>
+
+<li>
+
+<span>Hidden Cave</span>
+
+<div class="controls">
+
+<button onclick="moveUp(this)">▲</button>
+
+<button onclick="moveDown(this)">▼</button>
+
+</div>
+
+</li>
+
+<li>
+
+<span>Map</span>
+
+<div class="controls">
+
+<button onclick="moveUp(this)">▲</button>
+
+<button onclick="moveDown(this)">▼</button>
+
+</div>
+
+</li>
 
 </ul>
 
@@ -117,7 +201,9 @@ Check Order
 
 </div>
 
-<a id="finalButton" href="ending.html">
+<div id="finishButton">
+
+<a href="ending.html">
 
 <button>
 
@@ -127,17 +213,15 @@ Unlock the Lost Train
 
 </a>
 
+</div>
+
 </main>
 
 <script>
 
-let dragItem;
-
-const list=document.getElementById("clueList");
-
 function checkRiddle(){
 
-const answer=document
+let answer=document
 .getElementById("answer")
 .value
 .trim()
@@ -150,8 +234,7 @@ document.getElementById("riddleResult").innerHTML=
 
 document.getElementById("orderSection").style.display="block";
 
-}
-else{
+}else{
 
 document.getElementById("riddleResult").innerHTML=
 "<span class='error'>Incorrect. Try again.</span>";
@@ -160,29 +243,33 @@ document.getElementById("riddleResult").innerHTML=
 
 }
 
-document.querySelectorAll("#clueList li").forEach(item=>{
+function moveUp(button){
 
-item.addEventListener("dragstart",()=>{
+let item=button.closest("li");
 
-dragItem=item;
+let prev=item.previousElementSibling;
 
-});
+if(prev){
 
-item.addEventListener("dragover",(e)=>{
+item.parentNode.insertBefore(item,prev);
 
-e.preventDefault();
+}
 
-});
+}
 
-item.addEventListener("drop",()=>{
+function moveDown(button){
 
-let parent=item.parentNode;
+let item=button.closest("li");
 
-parent.insertBefore(dragItem,item);
+let next=item.nextElementSibling;
 
-});
+if(next){
 
-});
+item.parentNode.insertBefore(next,item);
+
+}
+
+}
 
 function checkOrder(){
 
@@ -198,22 +285,21 @@ const correct=[
 
 const current=[
 
-...document.querySelectorAll("#clueList li")
+...document.querySelectorAll("#clueList li span")
 
-].map(li=>li.innerText);
+].map(span=>span.textContent);
 
-if(JSON.stringify(correct)==JSON.stringify(current)){
+if(JSON.stringify(correct)===JSON.stringify(current)){
 
 document.getElementById("orderResult").innerHTML=
 "<span class='success'>Excellent! The cave door opens!</span>";
 
-document.getElementById("finalButton").style.display="inline";
+document.getElementById("finishButton").style.display="block";
 
-}
-else{
+}else{
 
 document.getElementById("orderResult").innerHTML=
-"<span class='error'>That order is incorrect. Look at your clues carefully.</span>";
+"<span class='error'>That order is incorrect. Try again!</span>";
 
 }
 
@@ -223,3 +309,4 @@ document.getElementById("orderResult").innerHTML=
 
 </body>
 </html>
+
