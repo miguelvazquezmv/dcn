@@ -1,0 +1,276 @@
+/* =========================================
+   THE MYSTERY OF THE LOST TRAIN
+   Main Stylesheet
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: #213865;
+    color: #f5f1df;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+}
+
+.site-header {
+    padding: 28px 20px;
+    text-align: center;
+    border-bottom: 2px solid #e5b51b;
+    background: #151c29;
+}
+.site-header h1 {
+    margin: 0;
+    color: #ffd21a;
+    font-size: clamp(1.6rem, 5vw, 3rem);
+}
+.site-header p {
+    margin: 5px 0 0;
+}
+main {
+    width: min(1000px, 92%);
+    margin: auto;
+}
+.hero {
+    min-height: 600px;
+    padding: 70px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        rgba(10, 15, 24, .65),
+        rgba(10, 15, 24, .9)
+    );
+    border-radius: 0 0 20px 20px;
+}
+.hero-symbol {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(255, 210, 26, .45));
+}
+.hero h2 {
+    margin: 20px 0;
+    color: #ffd21a;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+.hero p {
+    max-width: 700px;
+    font-size: 1.2rem;
+}
+.action-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 35px auto;
+}
+.action-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid #ffe66b;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ffd21a, #d99b00);
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(255, 210, 26, .45);
+    transition: .2s;
+}
+.action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 210, 26, .7);
+}
+.intro-card,
+.story-scene,
+.puzzle-card,
+.ending-story,
+.final-message {
+    margin: 30px 0;
+    padding: 30px;
+    background: #292326;
+    border: 2px solid #d9a817;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.35);
+}
+.intro-card {
+    text-align: center;
+}
+h2,
+h3 {
+    color: #ffd21a;
+}
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+}
+.feature-grid article {
+    padding: 22px;
+    background: #151a24;
+    border: 1px solid #a47b20;
+    border-radius: 12px;
+    text-align: center;
+}
+.feature-grid img,
+.scene-symbol,
+.puzzle-symbol,
+.final-message img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 12px;
+    filter: drop-shadow(0 0 6px rgba(255, 210, 26, .35));
+}
+.scene-image {
+    display: block;
+    width: 100%;
+    max-height: 550px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border: 1px solid #b78c20;
+}
+.environment {
+    padding: 12px 16px;
+    background: rgba(255,255,255,.06);
+    border-left: 4px solid #d9a817;
+    font-style: italic;
+}
+.dialogue {
+    margin: 22px 0;
+    padding: 16px 20px;
+    background: rgba(15,15,18,.65);
+    border-left: 5px solid #ffd21a;
+    border-radius: 0 10px 10px 0;
+}
+.dialogue p {
+    margin: 0 0 10px;
+}
+.dialogue p:last-child {
+    margin-bottom: 0;
+}
+.dialogue strong {
+    color: #fff;
+}
+.puzzle-card {
+    text-align: center;
+}
+.riddle {
+    padding: 18px;
+    margin: 20px 0;
+    background: #151a24;
+    border: 1px solid #a47b20;
+    border-radius: 10px;
+}
+input {
+    width: min(400px, 90%);
+    display: block;
+    margin: 20px auto;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #c59b26;
+    background: #10141c;
+    color: white;
+}
+.clue-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+    padding: 12px;
+    background: #151a24;
+    border: 1px solid #8d6c20;
+    border-radius: 10px;
+    text-align: left;
+}
+.clue-card img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+.clue-card span {
+    flex: 1;
+}
+.clue-card button {
+    min-width: 42px;
+    padding: 8px;
+    border: 1px solid #d5a91a;
+    border-radius: 7px;
+    background: #252b35;
+    color: white;
+    cursor: pointer;
+}
+.message {
+    min-height: 25px;
+    font-weight: bold;
+    color: #ffd21a;
+}
+.hidden {
+    display: none;
+}
+.success-panel {
+    margin: 30px 0;
+    padding: 35px;
+    text-align: center;
+    background: #292326;
+    border: 2px solid #ffd21a;
+    border-radius: 16px;
+}
+.success-panel img {
+    width: 90px;
+}
+.ending-hero {
+    padding: 45px 20px;
+    text-align: center;
+}
+.ending-hero img {
+    width: min(100%, 800px);
+    max-height: 400px;
+    object-fit: cover;
+    border: 3px solid #d9a817;
+    border-radius: 15px;
+}
+.solved {
+    color: #8cff9a;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.final-message {
+    text-align: center;
+}
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+    border-top: 2px solid #d9a817;
+    background: #151a24;
+}
+@media (max-width: 700px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .intro-card,
+    .story-scene,
+    .puzzle-card,
+    .ending-story,
+    .final-message {
+        padding: 22px 17px;
+    }
+    .clue-card {
+        flex-wrap: wrap;
+    }
+    .clue-card span {
+        min-width: 70%;
+    }
+    .action-button {
+        width: 90%;
+    }
+}

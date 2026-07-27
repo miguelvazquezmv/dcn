@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Clues | The Mystery of the Lost Train</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <h1>The Final Challenge</h1>
+    <p>Follow the evidence.</p>
+</header>
+
+<main>
+
+    <section class="puzzle-card">
+
+        <img src="Images/journal-symbol.png"
+             alt="Old journal"
+             class="puzzle-symbol">
+
+        <h2>Puzzle 1 — The Riddle</h2>
+
+        <p>
+            The journal contains one final riddle.
+            Solve it to unlock the trail.
+        </p>
+
+        <div class="riddle">
+            <p>
+                I carry passengers but have no feet.
+                I follow a path but never walk.
+                What am I?
+            </p>
+        </div>
+
+        <input id="riddleAnswer"
+               type="text"
+               placeholder="Enter your answer"
+               autocomplete="off">
+
+        <button class="action-button" onclick="checkRiddle()">
+            Unlock the Next Clue
+        </button>
+
+        <p id="riddleMessage" class="message"></p>
+
+    </section>
+
+
+    <section id="trailPuzzle"
+             class="puzzle-card hidden">
+
+        <img src="Images/map-symbol.png"
+             alt="Railroad map"
+             class="puzzle-symbol">
+
+        <h2>Puzzle 2 — Check the Trail</h2>
+
+        <p>
+            Put the clues in the order that Felix, Fred,
+            and Rich discovered them.
+        </p>
+
+        <div id="clueList">
+
+            <div class="clue-card">
+                <img src="Images/key-symbol.png"
+                     alt="Brass key">
+                <span>They discover the brass key.</span>
+                <button onclick="moveUp(this)">↑</button>
+                <button onclick="moveDown(this)">↓</button>
+            </div>
+
+            <div class="clue-card">
+                <img src="Images/journal-symbol.png"
+                     alt="Journal">
+                <span>They find the old journal.</span>
+                <button onclick="moveUp(this)">↑</button>
+                <button onclick="moveDown(this)">↓</button>
+            </div>
+
+            <div class="clue-card">
+                <img src="Images/map-symbol.png"
+                     alt="Map">
+                <span>The journal reveals the mountain map.</span>
+                <button onclick="moveUp(this)">↑</button>
+                <button onclick="moveDown(this)">↓</button>
+            </div>
+
+            <div class="clue-card">
+                <img src="Images/tunnel-symbol.png"
+                     alt="Tunnel">
+                <span>They enter the abandoned tunnel.</span>
+                <button onclick="moveUp(this)">↑</button>
+                <button onclick="moveDown(this)">↓</button>
+            </div>
+
+        </div>
+
+        <button class="action-button"
+                onclick="checkOrder()">
+            Check the Trail
+        </button>
+
+        <p id="orderMessage" class="message"></p>
+
+    </section>
+
+
+    <section id="successPanel"
+             class="success-panel hidden">
+
+        <img src="Images/train-symbol.png"
+             alt="Steam locomotive">
+
+        <h2>The Trail Is Complete!</h2>
+
+        <p>
+            The clues point toward the hidden chamber.
+            The Lost Train is waiting.
+        </p>
+
+        <a href="ending.html"
+           class="action-button">
+            Unlock the Lost Train
+        </a>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
